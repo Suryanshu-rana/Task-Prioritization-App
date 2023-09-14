@@ -1,4 +1,4 @@
-package com.example.todoapp.Screen.UI
+package com.example.todoapp.screen.ui
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api

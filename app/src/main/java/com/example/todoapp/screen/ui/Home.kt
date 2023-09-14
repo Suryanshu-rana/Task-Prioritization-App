@@ -1,6 +1,5 @@
-package com.example.todoapp.Screen.UI
+package com.example.todoapp.screen.ui
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +41,7 @@ fun Home() {
     val todoviewmodel by remember { mutableStateOf(TodoViewModel()) }
     var delete by remember { mutableStateOf(false) }
     val showdelete = remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -63,7 +63,8 @@ fun Home() {
                                 imageVector = Icons.Default.CheckCircle,
                                 contentDescription = "Addd a todo"
                             )
-                        })
+                        }
+                    )
                 }
             }
         })
@@ -83,8 +84,7 @@ fun Home() {
                             .padding(5.dp)
                             .padding(start = 8.dp)
                             .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
-                    )
-                    {
+                    ) {
                         Text(
                             modifier = Modifier.fillMaxWidth(.7F),
                             text = it.name, textDecoration =
@@ -95,9 +95,7 @@ fun Home() {
                             }
                         )
                         RadioButton(selected = it.checked, onClick = {
-                            Log.v("this is the input ", it.checked.toString())
                             todoviewmodel.ischecked(it, value = !it.checked)
-                            Log.v("this is the input ", it.checked.toString())
                         })
                         if (delete) {
                             IconButton(onClick = { showdelete.value = true }) {

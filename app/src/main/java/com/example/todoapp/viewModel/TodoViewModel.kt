@@ -20,7 +20,6 @@ class TodoViewModel: ViewModel() {
         _todolist.remove(todo)
     }
     fun ischecked(todo: Todo,value:Boolean){
-        Log.v("this is the input 1 ",value.toString())
         val index = _todolist.indexOf(todo)
        _todolist[index] = _todolist[index].let {
             it.copy(

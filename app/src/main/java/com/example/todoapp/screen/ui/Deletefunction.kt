@@ -1,4 +1,4 @@
-package com.example.todoapp.Screen.UI
+package com.example.todoapp.screen.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
