@@ -1,3 +1,3 @@
 package com.example.todoapp.model
 
-data class Todo(var id:Long,var name:String,val checked:Boolean)
+data class Todo(var id: Double, var name:String, var checked:Boolean)

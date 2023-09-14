@@ -1,5 +1,6 @@
 package com.example.todoapp.viewModel
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
@@ -7,9 +8,9 @@ import com.example.todoapp.model.Todo
 
 class TodoViewModel: ViewModel() {
 
-    var _todolist = mutableStateListOf<Todo>()
+    private var _todolist = mutableStateListOf<Todo>()
 
-    fun gettodoList(): SnapshotStateList<Todo> {
+    fun getTodoList(): SnapshotStateList<Todo> {
         return _todolist
     }
     fun addtodo(todo:Todo){
@@ -17,5 +18,17 @@ class TodoViewModel: ViewModel() {
     }
     fun deleteTodo(todo:Todo){
         _todolist.remove(todo)
+    }
+    fun ischecked(todo: Todo,value:Boolean){
+        Log.v("this is the input 1 ",value.toString())
+        val index = _todolist.indexOf(todo)
+       _todolist[index] = _todolist[index].let {
+            it.copy(
+              id = it.id,
+                name = it.name,
+                checked = value
+            )
+        }
+        Log.v("this is the input2 ",_todolist[index].checked.toString())
     }
 }
