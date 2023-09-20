@@ -1,4 +1,4 @@
-# TodoApp
+# TodoApp with Jetpack COMPOSE
 Todo App using Jetpack compose and MVVM using the latest design techniqe and best prectice adviced by google .
 
 ## App Overview 
