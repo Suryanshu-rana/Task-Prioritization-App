@@ -1,5 +1,5 @@
 # TaskPrioritization App with Jetpack COMPOSE
-Todo App using Jetpack compose and MVVM using the latest design techniqe and best prectice adviced by google .
+Task Prioritization App using Jetpack compose and MVVM using the latest design techniqe and best prectice adviced by google .
 
 ## App Overview 
 <img src = "https://github.com/Suryanshu-rana/TodoApp/assets/61387349/ca4a9aba-7e5c-4069-8449-a2928df6eaa8" width ="244" height ="456">
