@@ -1,33 +1,33 @@
 package com.example.todoapp.viewModel
 
+import android.app.Application
 import android.util.Log
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.lifecycle.ViewModel
-import com.example.todoapp.model.Todo
+import androidx.lifecycle.AndroidViewModel
+import com.example.todoapp.data.room.database.TodoDatabase
+import com.example.todoapp.data.room.model.Todo
+import com.example.todoapp.data.room.repository.TodoRepository
+import kotlinx.coroutines.flow.Flow
 
-class TodoViewModel: ViewModel() {
+class TodoViewModel(application: Application): AndroidViewModel(application) {
 
-    private var _todolist = mutableStateListOf<Todo>()
-
-    fun getTodoList(): SnapshotStateList<Todo> {
-        return _todolist
+    private var _todolist :Flow<List<Todo>>
+    private var repository:TodoRepository
+    init {
+        val todoDao = TodoDatabase.getInstance(application).todoDao()
+        repository = TodoRepository(todoDao)
+        _todolist = repository.allTodos
     }
-    fun addtodo(todo:Todo){
-        _todolist.add(todo)
+    fun getTodoList(): Flow<List<Todo>> {
+        return repository.allTodos
     }
-    fun deleteTodo(todo:Todo){
-        _todolist.remove(todo)
+    fun addtodo(todo: Todo){
+        repository.insertTodo(todo)
     }
-    fun ischecked(todo: Todo,value:Boolean){
-        val index = _todolist.indexOf(todo)
-       _todolist[index] = _todolist[index].let {
-            it.copy(
-              id = it.id,
-                name = it.name,
-                checked = value
-            )
-        }
-        Log.v("this is the input2 ",_todolist[index].checked.toString())
+    fun deleteTodo(todo: Todo){
+        Log.v("delete todo at repo",todo.toString())
+        repository.deleteTodo(todo)
+    }
+    fun ischecked(todo: Todo, value:Boolean){
+        addtodo(todo.also { it.checked = value })
     }
 }
