@@ -14,14 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.DialogProperties
-import com.example.todoapp.model.Todo
+import com.example.todoapp.data.room.model.Todo
 import com.example.todoapp.viewModel.TodoViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddTodoPopup(
     showscreen: MutableState<Boolean>,
-    todoviewmodel: TodoViewModel,
+    todoViewModel: TodoViewModel,
     title: @Composable() () -> Unit,
     icon: @Composable() () -> Unit,
 ) {
@@ -46,7 +46,7 @@ fun AddTodoPopup(
         confirmButton = {
             TextButton(onClick = {
                 if (todoText.isNotEmpty()) {
-                    todoviewmodel.addtodo(Todo(id = 1.1, name = todoText, checked = false))
+                    todoViewModel.addtodo(Todo( name = todoText, checked = false))
                     showscreen.value = false
                 }
             }) {
